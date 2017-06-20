@@ -28,14 +28,19 @@ public class MainActivity extends AppCompatActivity implements UserRecyclerAdapt
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         users = new ArrayList<>();
-        loadUser();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        loadUser();
         displayList(users);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        users.clear();
     }
 
     @Override
